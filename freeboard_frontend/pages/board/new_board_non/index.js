@@ -1,57 +1,28 @@
 import { useMutation, gql } from '@apollo/client';
+import { useRouter } from 'next/router';
 import { useState } from 'react';
-import {
-  Address,
-  ButtonWrapper,
-  CancelButton,
-  Contents,
-  Error_Text,
-  ImageWrapper,
-  InputWrapper,
-  Label,
-  Label_Wrapper,
-  OptionWrapper,
-  Password,
-  RadioButton,
-  RadioLabel,
-  SearchButton,
-  Subject,
-  SubmitButton,
-  Title,
-  UploadButton,
-  Wrapper,
-  Writer,
-  WriterWrapper,
-  Youtube,
-  Zipcode,
-  ZipcodeWrapper,
-} from "../../styles/BoardsNew.styles";
+import { Address, ButtonWrapper, CancelButton, Contents, Error_Text, ImageWrapper, InputWrapper, Label, Label_Wrapper, OptionWrapper, Password,
+        RadioButton, RadioLabel, SearchButton, Subject, SubmitButton, Title, UploadButton, Wrapper, Writer, WriterWrapper, Youtube, Zipcode, ZipcodeWrapper,
+} from "../../../styles/BoardsNew.styles";
 
-const CREATE_BOARD = gql`
-  mutation createBoard($createBoardInput:CreateBoardInput!){ 
-            //⬆️ 구조 방식선언 (string인지 int인지 , DOCS확인)
-    createBoard(createBoardInput:$createBoardInput)
-      {_id}
+//                        ⬇️ 구조 방식선언 (string인지 int인지 , DOCS확인)
+export const CREATE_BOARD = gql`
+  mutation createBoard($createBoardInput:CreateBoardInput!) {
+    createBoard(createBoardInput:$createBoardInput) {
+      _id
+    }
   }
 `
-//
 
 
 export default function BoardsNewPage() {
-
-    const [creatBoard] = useMutation(CREATE_BOARD);
-                                    //⬆️위에 CREATE_BOARD 값을 불러오겠다
+    const router = useRouter()
+    const [creatBoard ] = useMutation(CREATE_BOARD)
+                                    // ⬆️위에 CREATE_BOARD 값을 불러오겠다
     const [writer, setWriter] = useState('')
     const [password, setPassword] = useState('')
     const [title, setTitle] = useState('')
     const [contents, setContents] = useState('')
-    // 추가연동//
-    // const [ MyZipcode,setMyZipcod] = useState('')
-    // const [ MyAddress, setMyAddress] = useState('')
-    // const [ MyAddressDetail, setMyAddressDetail] = useState('')
-    // const [ MyYoutube, setMyYoutube] = useState('')
-
-    
     
     const [writerError, setWriterError] = useState('')
     const [passwordError, setPasswordError] = useState('')
@@ -102,31 +73,27 @@ export default function BoardsNewPage() {
       }
       if(writer !== "" && password !== "" && title !== "" && contents !== ""){
         alert('게시물을 등록합니다~')
-        //const 이름은 꼭 result가 아니어도 된다.
-        const result = await creatBoard({
-          variables: {
-            createBoardInput:{
-              //키값과 value값이 같으면 생략이 가능 하다. (자바스크립트 내에서) 
-              //즉, writer : writer를 그냥 writer로 설정 할 수 있다.
-              writer: writer, 
-              password: password,
-              title: title,
-              contents: MyContent,
-              // youtubeUrl: MyYoutube,
-              // boardAddress:{zipcode: MyZipcode,
-              //               address: MyAddress,
-              //               addressDetail: MyAddressDetail}
+        try{
+          const result = await creatBoard({
+              // const 이름은 꼭 result가 아니어도 된다.
+            variables: {
+              createBoardInput:{
+                // 키값과 value값이 같으면 생략이 가능 하다. (자바스크립트 내에서) 
+                // 즉, writer : writer를 그냥 writer로 설정 할 수 있다.
+                writer: writer, 
+                password: password,
+                title: title,
+                contents: contents
+              }
             }
+          })
+            console.log(result.data.createBoard._id)
+            router.push(`/board/board_check/${result.data.createBoard._id}`)
+        } catch(error){
+          console.log(Error)
           }
-        });
-        console.log(result.data.createBoard._id)
       }
     }
-      
-
-      
-        
-    
 
   return (
     <Wrapper>
@@ -177,7 +144,7 @@ export default function BoardsNewPage() {
         <Contents 
           name="contents" 
           placeholder="내용을 작성해주세요." 
-          onChange={onChageContent} 
+          onChange={onChangeContents} 
         /> 
       </InputWrapper>
       <InputWrapper>
@@ -186,19 +153,19 @@ export default function BoardsNewPage() {
           <Zipcode 
             name="zipcode" 
             placeholder="07250" 
-            onChange={onChangeZipcode} 
+            // onChange={onChangeZipcode} 
           /> 
           <SearchButton>우편번호 검색</SearchButton>
         </ZipcodeWrapper>
-        <Address onChange={onChangeAddress}/> 
-        <Address onChange={onChangeAddressDetail}/> 
+        <Address /> 
+        <Address /> 
       </InputWrapper>
       <InputWrapper>
         <Label>유튜브</Label>
         <Youtube 
           name="youtube" 
           placeholder="링크를 복사해주세요." 
-          //onChange={onChangeYoutube}
+          // onChange={onChangeYoutube}
         /> 
       </InputWrapper>
       <ImageWrapper>
