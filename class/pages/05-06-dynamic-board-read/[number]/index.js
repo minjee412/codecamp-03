@@ -21,7 +21,8 @@ export default function DynaminBoardRead(){
 
     const { data } = useQuery(FETCH_BOARD, {
         variables: { number: Number(router.query.number) }
-    })
+    })   
+    // variables에 받아오는 값이 Int 면, 앞에서 Num()을 써서 숫자로 변형 시켜준다.
     console.log(data)
 
     return(
@@ -48,5 +49,4 @@ export default function DynaminBoardRead(){
     )
 
 }
-
 //해당 페이지는 router로 변경 되는 값을 받되, 그외 안받는 내용들은 고정된 상태일때 쓴다.
