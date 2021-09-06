@@ -178,7 +178,7 @@ export const CancelButton = styled.button`
 export const SubmitButton = styled.button`
 	width: 179px;
 	height: 52px;
-	background-color: #ffd600;
+	background-color: ${(props) => (props.typed === true ? 'yellow' : 'grey')};
 	border: none;
 	font-size: 16px;
 	font-weight: 500;
@@ -186,3 +186,4 @@ export const SubmitButton = styled.button`
 	margin-right: 12px;
 	cursor: pointer;
 `;
+

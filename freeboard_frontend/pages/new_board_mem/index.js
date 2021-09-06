@@ -1,4 +1,4 @@
-import { Address, Info_Text, LittleText, Main, MainSetting, Picture, PicUpload, PlusImg, Radio, RadioBtn, RadioYoutube, Register, RegisterBtn, Title, Title_Text, Title_Title, Upload, UploadText, Wrapper, Youtube, Zip, ZipCode, ZipCode_Search, ZipCode_Text } from '../../styles/example'
+import { Address, Info_Text, LittleText, Main, MainSetting, Picture, PicUpload, PlusImg, Radio, RadioBtn, RadioYoutube, Register, RegisterBtn, Title, Title_Text, Title_Title, Upload, UploadText, Wrapper, Youtube, Zip, ZipCode, ZipCode_Search, ZipCode_Text } from '../../styles/(mem)BoardsNew.styles'
 
 export default function NewBoard(){
 
