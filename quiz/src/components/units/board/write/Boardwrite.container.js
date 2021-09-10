@@ -2,11 +2,13 @@ import BoardWriteUI from './Boardwrite.presenter'
 import { useMutation } from '@apollo/client'
 import { useRouter } from 'next/router'
 import { useState } from 'react'
-import { CREATE_BOARD } from './Boardwrite.queries'
+import { CREATE_BOARD, UPDATE_BOARD } from './Boardwrite.queries'
 
 
-export default function BoardWrite (){ 
+export default function BoardWrite (props){ 
     const router = useRouter()
+    const [updateBoard] = useMutation(UPDATE_BOARD)
+
     const [ creatBoard ] = useMutation(CREATE_BOARD) //state와 구조가 흡사하다.
 
     const [ myWriter, setMyWriter ] = useState("")
@@ -36,7 +38,7 @@ export default function BoardWrite (){
         setMyContents(event.target.value)
         if(myWriter !== "" && myTitle !== "" && event.target.value !== ""){
             setWrite (true)
-           }
+            }
     }
 
     async function active(){
@@ -51,12 +53,27 @@ export default function BoardWrite (){
             console.log(result)
             console.log(result.data.createBoard.number) // create된 정보 들을 가져 온다. (여기에서는 data로 number를 가져온다는 뜻)
             //router.push('/05-06-dynamic-board-read/'+ result.data.createBoard.number) // + 로 연결 해야 숫자 변수로 옴, 옛날 방식
-            router.push( `/05_faq/05-06-dynamic-board-read/${result.data.createBoard.number}` ) // 최신방식 (템플릿 리터럴), `/주소/${불러올번호값}` >>${} 안에 내용이 number 변수로 인식 된다.
+            //router.push( `/05_faq/05-06-dynamic-board-read/${result.data.createBoard.number}` ) // 최신방식 (템플릿 리터럴), `/주소/${불러올번호값}` >>${} 안에 내용이 number 변수로 인식 된다.
                                                                             //------ (내가 만든 []폴더의 이름을 넣어야 한다.)   
+            router.push(`/07-01-board-detail/${result.data.createBoard.number}`)
         } catch(error){
             console.log(error)
         }
         
+    }
+
+    async function onClickEdit(){
+
+        try{
+            await updateBoard({
+            variables: {number: Number(router.query.number), writer: myWriter, title: myTitle, contents: myContents}
+            }) 
+                router.push(`/07-01-board-detail/${router.query.number}`)
+        } catch(error){
+            console.log(error)
+        }
+        
+
     }
 
     return(
@@ -66,7 +83,8 @@ export default function BoardWrite (){
         onChangeMyContents = {onChangeMyContents}
         active={active}
         write={write}
-        
+        isEdit={props.isEdit}
+        onClickEdit={onClickEdit}
         
         />
         

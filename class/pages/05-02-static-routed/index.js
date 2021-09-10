@@ -1,7 +1,7 @@
-export default function staticRoutedPage(){
+export default function StaticRoutedPage(){
 
-    return(
-        <div>페이지 이동 완료 됨 !!!</div>
+    return (
+        <div>페이지 이동 완료됨!!!</div>
     )
 
 }

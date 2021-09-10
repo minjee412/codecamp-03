@@ -1,5 +1,5 @@
 import { useQuery, gql } from '@apollo/client'
-import router, { useRouter } from 'next/router'
+import { useRouter } from 'next/router'
 
 const FETCHBOARD = gql`
     query fetchProduct($productId: ID){

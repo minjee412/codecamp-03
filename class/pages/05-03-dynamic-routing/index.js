@@ -1,5 +1,4 @@
-import { useRouter } from 'next/router'
-
+import {useRouter} from 'next/router'
 
 export default function DynamicRoutingPage(){
     const router = useRouter()
@@ -7,18 +6,20 @@ export default function DynamicRoutingPage(){
     function onClickMove1(){
         router.push('/05-04-dynamic-routed/1')
     }
+
     function onClickMove2(){
         router.push('/05-04-dynamic-routed/2')
     }
+
     function onClickMove3(){
         router.push('/05-04-dynamic-routed/3')
     }
 
-    return(
+    return (
         <>
-            <button onClick={onClickMove1}>1번 게시물로 이동 하기!!!</button><br/>
-            <button onClick={onClickMove2}>2번 게시물로 이동 하기!!!</button><br/>
-            <button onClick={onClickMove3}>3번 게시물로 이동 하기!!!</button><br/>
+            <button onClick={onClickMove1}>1번 게시물로 이동하기!!</button>
+            <button onClick={onClickMove2}>2번 게시물로 이동하기!!</button>
+            <button onClick={onClickMove3}>3번 게시물로 이동하기!!</button>
         </>
     )
 

@@ -12,8 +12,9 @@ mutation createProduct ($seller: String, $createProductInput: CreateProductInput
 
 
 export default function CreateProduct(){
-    const [ createProduct ] = useMutation(CREATEPRODUCT)
     const router = useRouter()
+
+    const [ createProduct ] = useMutation(CREATEPRODUCT)
 
     const [ seller, setSeller ] = useState('')
     const [ product, setProduct ] = useState('')
