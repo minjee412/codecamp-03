@@ -12,4 +12,4 @@ export default function BoardWriteUI(props){
             {props.isEdit && <MyButton onClick={props.onClickEdit} qqq={props.qqq}>수정하기</MyButton>}
         </>
     )
-}``
+}
