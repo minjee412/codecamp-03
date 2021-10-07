@@ -30,7 +30,11 @@ export default function GraphqlMutationBoard3Page(){
 
     async function aaa(){
         const result = await createBoard({
-            variables: { writer: myWriter, title: myTitle, contents: myContents }
+            variables: { 
+                writer: myWriter, 
+                title: myTitle, 
+                contents: myContents 
+            }
         })
         console.log(result)
         console.log(result.data.createBoard.number)

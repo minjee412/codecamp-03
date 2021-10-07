@@ -41,12 +41,9 @@ export default function GraphqlMutationBoard3Page() {
 
   return (
     <>
-      작성자: <input type="text" name="writer" onChange={onChangeMyInputs} />
-      <br />
-      제목: <input type="text" name="title" onChange={onChangeMyInputs} />
-      <br />
-      내용: <input type="text" name="contents" onChange={onChangeMyInputs} />
-      <br />
+      작성자: <input type="text" name="writer" onChange={onChangeMyInputs} /><br />
+      제목: <input type="text" name="title" onChange={onChangeMyInputs} /><br />
+      내용: <input type="text" name="contents" onChange={onChangeMyInputs} /><br />
       <button onClick={aaa}>GRAPHQL-API 요청하기!!!</button>
     </>
   );

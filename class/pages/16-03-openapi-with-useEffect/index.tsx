@@ -8,6 +8,7 @@ export default function OpenapiWithUseEffectPage() {
     async function getImage() {
       const image = await axios.get("https://dog.ceo/api/breeds/image/random");
       setDogImage(image.data.message);
+      console.log(image.data);
     }
     getImage();
   }, []);
