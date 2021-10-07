@@ -11,8 +11,11 @@ export default function ReactHookFormPage() {
     <form onSubmit={handleSubmit(onClickLogin)}>
       <div>리액트 훅 폼 연습 !!</div>
       이름: <input type="text" {...register("myName")} />
+      <br />
       휴대폰번호: <input type="text" {...register("myPhone")} />
+      <br />
       이메일: <input type="text" {...register("myEmail")} />
+      <br />
       <br />
       비밀번호: <input type="password" {...register("myPassword")} />
       <br />
