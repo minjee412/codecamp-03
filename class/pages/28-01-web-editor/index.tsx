@@ -65,7 +65,12 @@ export default function WebEditorPage() {
       <br />
       제목: <input type="text" {...register("title")} />
       <br />
-      내용: <ReactQuill onChange={onChnageMyEditor} />
+      내용:{" "}
+      <ReactQuill
+        onChange={onChnageMyEditor}
+        style={{ width: "500px", height: "200px" }}
+      />
+      <br />
       <br />
       <button type="submit">등록하기</button>
       {/* <button type="reset">리셋하기</button> */}

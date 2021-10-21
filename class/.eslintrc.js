@@ -18,5 +18,6 @@ module.exports = {
     "react/prop-types": "off",
     "spaced-comment": "off",
     "react/display-name": "off",
+    // "no-new": "off",
   },
 };
