@@ -18,7 +18,7 @@ const FETCH_USEDITEM = gql`
   query fetchUseditem($useditemId: ID!) {
     fetchUseditem(useditemId: $useditemId) {
       name
-      remark
+      remarks
       images
     }
   }
@@ -26,7 +26,7 @@ const FETCH_USEDITEM = gql`
 
 export const getServerSideProps = async (context) => {
   // 1. graphql 데이터를 요청 한다.
-  await request(
+  const result = await request(
     "https://backend03.codebootcamp.co.kr/graphql",
     FETCH_USEDITEM,
     {
@@ -37,7 +37,7 @@ export const getServerSideProps = async (context) => {
   // 2. 요청 받은 데이터를 페이지로 넘겨준다.
   return {
     props: {
-      fetchUseditem: XPathResult.fetchUseditem,
+      fetchUseditem: result.fetchUseditem,
     },
   };
 };
