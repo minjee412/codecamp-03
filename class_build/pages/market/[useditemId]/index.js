@@ -24,8 +24,9 @@ const FETCH_USEDITEM = gql`
   }
 `;
 
+//  getServerSideProps 는 고정된 이름 ! 절대 바꿀 수 없다!
 export const getServerSideProps = async (context) => {
-  // 1. graphql 데이터를 요청 한다.
+  // 1. graphql 데이터를 요청 한다.(axios쓸때도 방식은 동일하다.)
   const result = await request(
     "https://backend03.codebootcamp.co.kr/graphql",
     FETCH_USEDITEM,
