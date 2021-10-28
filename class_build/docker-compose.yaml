@@ -1,0 +1,12 @@
+version: "3.3"
+# 제일 언정적인 버전
+services:
+  class_build:
+    build:
+      context: .
+      # context : 지금 있는 폴더 위치를 찍는다
+      dockerfile: ./Dockerfile
+      # ./Dockerfile : context를 통해 찍힌 폴더 안에서 Dockerfile을 찾아서 쓰겠다
+    ports:
+      - 3000:3000
+      # Docker밖에서 3000번으로 들어온 아이는 Docker에 3000번으로 넘겨주세요
